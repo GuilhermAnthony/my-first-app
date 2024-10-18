@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View, } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, TextInput, View, } from "react-native";
 
 export function Form() {
     const [height, setHeight] = useState('');
     const[weight, setWeight] = useState('');
     const[imc, setImc] = useState('');
 
-    function imcCalculator ()
-    {
-        let totalImc = (weight / (height*height)).toFixed(2)
-
-        setImc(totalImc)
-    }
+    const [imcList, setImcList] = useState([]);
 
     function validatorImc ()
     {
-        if (height != '' && weight != '') {
-            imcCalculator()
+        
+        if (height !== undefined && weight !== undefined) {
+            let totalImc = (weight/(height*height)).toFixed(2)
+            
+           imcList.push(totalImc)
+           setImc(totalImc)
+           console.log(imcList)
+           
             setHeight('')
             setWeight('')
         }
@@ -27,6 +28,8 @@ export function Form() {
             <View style={styles.form}>
                 <Text style={styles.formLabel}>Altura:</Text>
                 <TextInput 
+                    onChangeText={setHeight}
+                    inputMode="numeric"
                     placeholder="Ex. 1.75"
                     value={height}
                     style={styles.formInput}
@@ -34,6 +37,8 @@ export function Form() {
 
                 <Text style={styles.formLabel}>Peso:</Text>
                 <TextInput
+                    onChangeText={setWeight}
+                    inputMode="numeric"
                     placeholder="Ex. 67.5"
                     value={weight}
                     style={styles.formInput}
@@ -47,6 +52,17 @@ export function Form() {
                 </Pressable>
 
                 <Text style={styles.formResult}>{imc}</Text>
+
+                <FlatList 
+                    data={imcList.reverse()}
+                    renderItem={({item}) => {
+                        return (
+                            <View>
+                                <Text>{item}</Text>
+                            </View>
+                        )
+                    }}
+                />
             </View>
         </View>
             
