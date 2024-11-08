@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, View } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -9,12 +9,14 @@ import { Teste2 } from '@/components/Teste2';
 import { Teste3 } from '@/components/Teste3';
 import { Teste4 } from '@/components/Teste4';
 import { Form } from '@/components/Form/Form';
+import { Triangulo } from '@/components/triangulo/triangulo';
+
 
 export default function HomeScreen() {
   return (
-    <div>
-   <Form></Form>
-   </div>
+    <View>
+      <Triangulo/>
+    </View>
    );
 }
 

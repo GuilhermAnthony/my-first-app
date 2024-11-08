@@ -16,7 +16,7 @@ export function Form() {
             
            imcList.push(totalImc)
            setImc(totalImc)
-           console.log(imcList)
+           console.log(imcList) 
            
             setHeight('')
             setWeight('')
@@ -53,16 +53,7 @@ export function Form() {
 
                 <Text style={styles.formResult}>{imc}</Text>
 
-                <FlatList 
-                    data={imcList.reverse()}
-                    renderItem={({item}) => {
-                        return (
-                            <View>
-                                <Text>{item}</Text>
-                            </View>
-                        )
-                    }}
-                />
+
             </View>
         </View>
             
